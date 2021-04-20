@@ -8,7 +8,7 @@ version = None
 if len(sys.argv) >= 2:
     version = os.environ.get(sys.argv[1])
 
-if version is None or len(version) == 0:
+if not version:
     try:
         out = subprocess.check_output(['git', 'describe', '--tags', '--long', '--dirty', '--always'])
         version = out.rstrip().decode()
