@@ -22,5 +22,10 @@ if [ -z "$version" ]; then
     fi
 fi
 
-# Output JSON - using printf for better portability and to avoid echo quirks
-printf '{"version": "%s"}\n' "$version"
+# Output JSON - escape special characters to ensure valid JSON
+# Using bash 3.2+ compatible parameter expansion: ${var//pattern/replacement}
+# Order matters: escape backslashes first (to avoid double-escaping), then quotes
+version_escaped="${version//\\/\\\\}"  # Replace \ with \\
+version_escaped="${version_escaped//\"/\\\"}"  # Replace " with \"
+
+printf '{"version": "%s"}\n' "$version_escaped"
