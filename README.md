@@ -2,6 +2,8 @@
 
 Terraform module for retrieving version information from the Git repository in which the parent module is running. This module uses `git describe` to generate semantic version strings based on Git tags, commit history, and working tree state.
 
+> **Windows Users:** See the [Windows Compatibility Guide](WINDOWS.md) for detailed setup instructions and troubleshooting.
+
 ## Features
 
 - **Zero external dependencies** - Only requires Bash (3.2+) and Git
@@ -23,8 +25,10 @@ This module requires the following to be available in the execution environment:
 
 - ✅ **Linux** - All distributions with bash and git
 - ✅ **macOS** - Compatible with default bash 3.2 (no Homebrew updates required)
-- ✅ **Windows** - Git Bash, WSL, or Cygwin environments
+- ✅ **Windows** - Git Bash, WSL, or Cygwin environments ([detailed Windows guide](WINDOWS.md))
 - ✅ **CI/CD** - Works with environment variable overrides when Git is unavailable
+
+**Windows Users:** Git Bash is automatically included with Git for Windows. No additional installation required. See the [Windows Compatibility Guide](WINDOWS.md) for details.
 
 ## Usage
 
@@ -162,6 +166,8 @@ environment {
 ## Migration Notes
 
 **Version 1.2.0+**: Removed Python dependency in favor of Bash. The Python script (`git_describe.py`) is no longer used or required. If you have older versions of this module pinned, no changes are needed - the bash implementation produces identical output.
+
+**For Windows users:** Git Bash (included with Git for Windows) provides all required functionality. No additional setup needed beyond Git, which is already required for version control. See [WINDOWS.md](WINDOWS.md) for comprehensive Windows compatibility information, troubleshooting, and FAQs.
 
 ## License
 
